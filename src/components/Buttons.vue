@@ -10,10 +10,14 @@
         >
           {{ button }}
         </button>
-        <button class="numericButton" @click="onButtonClick('=')">=</button>
+        <button class="numericButton" @click="onEqualClick">=</button>
       </div>
       <div class="w-1/4 h-full flex flex-wrap">
-        <button class="functionButton" v-text="'<='"></button>
+        <button
+          class="functionButton"
+          @click="onDeleteClick"
+          v-text="'<='"
+        ></button>
         <button
           v-for="fbutton in functionButtons"
           :key="fbutton"
@@ -37,6 +41,8 @@
 export default {
   props: {
     onButtonClick: Function,
+    onEqualClick: Function,
+    onDeleteClick: Function,
   },
   setup() {
     const buttons = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "0", "."];
