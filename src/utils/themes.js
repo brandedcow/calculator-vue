@@ -37,7 +37,6 @@ export function applyTheme(themeType) {
   const root = document.documentElement;
 
   Object.keys(theme).forEach(property => {
-    console.log(property, theme[property])
     root.style.setProperty(property, theme[property])
   })
 }
@@ -50,18 +49,14 @@ export default function setupThemeChanger() {
   next7.setMilliseconds(0)
 
   if (currentHour >= 7 && currentHour < 19) {
-    console.log('Changing Theme To Light')
     applyTheme('light')
     next7.setHours(19)
   } else {
-    console.log('Changing Theme to Dark')
     applyTheme('dark')
     next7.setHours(7)
   }
 
   const timeUntilNext7 = next7.getTime() - new Date().getTime()
-
-  console.log(timeUntilNext7)
 
   setTimeout(setupThemeChanger, timeUntilNext7)
 }

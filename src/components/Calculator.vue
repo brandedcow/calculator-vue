@@ -1,8 +1,12 @@
 <template>
   <div class="bg-primary-button h-full w-hscreen/2">
     <div class="bg-primary h-1/3 flex flex-col p-10">
-      <div class="text-7xl text-primary-text">1+2</div>
-      <div class="text-4xl text-gray-500">3</div>
+      <div
+        class="text-8xl text-primary-text flex-grow flex justify-end items-center"
+      >
+        1+2
+      </div>
+      <div class="text-6xl text-gray-500 text-right">3</div>
     </div>
     <div class="flex flex-grow h-2/3">
       <div class="w-full h-full divide-x divide-gray-500 flex">
