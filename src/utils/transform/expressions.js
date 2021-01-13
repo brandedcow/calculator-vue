@@ -1,3 +1,3 @@
 export default function normalizeExpression(expression) {
-  return expression.replaceAll("÷", "/").replace("×", "*")
+  return expression.replaceAll("÷", "/").replaceAll("×", "*")
 }
