@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-grow h-2/3">
+  <div class="flex flex-grow h-2/3 relative">
     <div class="buttonContainer">
       <div class="w-3/4 h-full flex flex-wrap">
         <button
@@ -29,16 +29,16 @@
       </div>
     </div>
 
-    <button
-      class="bg-secondary w-5 text-white text-3xl flex justify-center items-center px-4"
-    >
-      &#9001;
-    </button>
+    <AdvancedButtons />
   </div>
 </template>
 
 <script>
+import AdvancedButtons from "./AdvancedButtons.vue";
 export default {
+  components: {
+    AdvancedButtons,
+  },
   props: {
     onButtonClick: Function,
     onEqualClick: Function,
@@ -58,7 +58,7 @@ export default {
 
 <style scoped>
 .buttonContainer {
-  @apply w-full h-full divide-x divide-gray-500 flex;
+  @apply w-full h-full divide-x divide-gray-500 flex mr-9;
 }
 
 .numericButton {
