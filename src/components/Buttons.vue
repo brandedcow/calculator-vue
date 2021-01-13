@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <AdvancedButtons />
+    <AdvancedButtons :onButtonClick="onButtonClick" />
   </div>
 </template>
 
