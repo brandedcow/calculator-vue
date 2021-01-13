@@ -5,6 +5,7 @@
       :onButtonClick="handleButtonClick"
       :onEqualClick="handleEqualClick"
       :onDeleteClick="handleDeleteClick"
+      :onDeleteLongClick="handleDeleteLongClick"
     />
   </div>
 </template>
@@ -39,6 +40,11 @@ export default {
       }
     }
 
+    function handleDeleteLongClick() {
+      calcInput.value = "";
+      calcResult.value = "";
+    }
+
     function handleEqualClick() {
       calcInput.value = calcResult.value;
       calcResult.value = "";
@@ -61,6 +67,7 @@ export default {
       handleEqualClick,
       handleButtonClick,
       handleDeleteClick,
+      handleDeleteLongClick,
     };
   },
 };

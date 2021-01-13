@@ -17,6 +17,7 @@
           class="functionButton"
           @click="onDeleteClick"
           v-text="'<='"
+          v-long-click="onDeleteLongClick"
         ></button>
         <button
           v-for="fbutton in functionButtons"
@@ -35,6 +36,8 @@
 
 <script>
 import AdvancedButtons from "./AdvancedButtons.vue";
+import longClick from "../utils/directives/longClick";
+
 export default {
   components: {
     AdvancedButtons,
@@ -43,6 +46,10 @@ export default {
     onButtonClick: Function,
     onEqualClick: Function,
     onDeleteClick: Function,
+    onDeleteLongClick: Function,
+  },
+  directives: {
+    "long-click": longClick,
   },
   setup() {
     const buttons = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "0", "."];
