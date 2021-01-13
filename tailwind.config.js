@@ -12,6 +12,9 @@ module.exports = {
         'primary-text': 'var(--color-text-primary)',
         'secondary-text': 'var(--color-text-secondary)',
         'primary-button': 'var(--color-button-primary)'
+      },
+      transitionProperty: {
+        'fontSize': 'font-size'
       }
     },
   },
