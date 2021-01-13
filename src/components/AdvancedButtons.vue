@@ -10,8 +10,18 @@
       @click="isClosed = !isClosed"
     ></div>
     <div v-show="!isClosed" class="flex flex-wrap flex-grow h-full">
-      <button @click="isInv.value = !isInv.value" class="button">INV</button>
-      <button @click="isRad.value = !isRad.value" class="button">RAD</button>
+      <button @click="isInv = !isInv" class="button">INV</button>
+      <button @click="isRad = !isRad" class="button">RAD</button>
+      <button @click="onButtonClick('%')" class="button">%</button>
+
+      <button
+        v-for="ibutton in invButtons"
+        :key="ibutton[0]"
+        @click="onButtonClick(transformInv(ibutton[Number(isInv)]))"
+        class="button"
+      >
+        {{ ibutton[Number(isInv)] }}
+      </button>
 
       <button
         v-for="button in buttons"
@@ -37,29 +47,39 @@ export default {
     const isInv = ref(false);
     const isRad = ref(true);
 
-    const buttons = [
-      "%",
-      "sin",
-      "cos",
-      "tan",
-      "ln",
-      "log",
-      "√",
-      "π",
-      "e",
-      "^",
-      "(",
-      ")",
-      "!",
+    const invButtons = [
+      ["sin", "sin⁻¹"],
+      ["cos", "cos⁻¹"],
+      ["tan", "tan⁻¹"],
+      ["ln", "eⁿ"],
+      ["log", "10ⁿ"],
+      ["√", "n²"],
     ];
+    const buttons = ["π", "e", "^", "(", ")", "!"];
 
     return {
       isClosed,
       isOpen,
       isInv,
       isRad,
+      invButtons,
       buttons,
     };
+  },
+  methods: {
+    transformInv(char) {
+      let typedChar = char;
+      if (char === "eⁿ") {
+        typedChar = "e^";
+      }
+      if (char === "10ⁿ") {
+        typedChar = "10^";
+      }
+      if (char === "n²") {
+        typedChar = "²";
+      }
+      return typedChar;
+    },
   },
 };
 </script>
@@ -75,6 +95,6 @@ export default {
   @apply w-3/4;
 }
 .button {
-  @apply text-primary-text text-4xl w-1/3 h-1/5 flex justify-center items-center;
+  @apply text-white text-4xl w-1/3 h-1/5 flex justify-center items-center;
 }
 </style>

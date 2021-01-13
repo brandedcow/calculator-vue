@@ -34,18 +34,18 @@ export default {
 
     function handleDeleteClick() {
       calcInput.value = calcInput.value.slice(0, calcInput.value.length - 1);
+      if (calcInput.value === "") {
+        calcResult.value = "";
+      }
     }
 
     function handleEqualClick() {
-      console.log("handle equal");
-
       calcInput.value = calcResult.value;
       calcResult.value = "";
     }
 
     watch(calcInput, () => {
       if (!isNumber(calcInput.value)) {
-        console.log("is expression");
         try {
           calcResult.value = doCalculation(calcInput.value);
         } catch (e) {
@@ -68,7 +68,6 @@ export default {
 function doCalculation(expressionString) {
   const replacedInput = normalizeEpression(expressionString);
   const calculationResult = evaluate(replacedInput).toPrecision();
-  console.log(replacedInput);
   return String(calculationResult).slice(0, 10);
 }
 </script>
