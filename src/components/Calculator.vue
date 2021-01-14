@@ -12,6 +12,7 @@
 
 <script>
 import { ref, watch } from "vue";
+import { useStore } from "vuex";
 import { evaluate } from "mathjs";
 import Screen from "./Screen";
 import Buttons from "./Buttons";
@@ -24,8 +25,7 @@ export default {
     Buttons,
   },
   setup() {
-    // TODO window.addEventListener('keydown')
-
+    const store = useStore();
     const calcInput = ref("");
     const calcResult = ref("");
 
@@ -48,6 +48,13 @@ export default {
     function handleEqualClick() {
       calcInput.value = calcResult.value;
       calcResult.value = "";
+
+      console.log("context", store);
+      store.commit("addItem", {
+        input: calcInput.value,
+        result: calcResult.value,
+        date: new Date(),
+      });
     }
 
     watch(calcInput, () => {

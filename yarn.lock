@@ -2691,6 +2691,11 @@
     "is-date-object" "^1.0.1"
     "is-symbol" "^1.0.2"
 
+"es6-promise@^4.2.8":
+  "integrity" "sha512-HJDGx5daxeIvxdBxvG2cb9g4tEvwIk3i8+nhX0yGrYmZUzbkdg8QbDevheDB8gd0//uPj4c1EQua8Q+MViT0/w=="
+  "resolved" "https://registry.npmjs.org/es6-promise/-/es6-promise-4.2.8.tgz"
+  "version" "4.2.8"
+
 "escalade@^3.1.1":
   "version" "3.1.1"
 
@@ -6437,12 +6442,17 @@
 "vue-template-es2015-compiler@^1.9.0":
   "version" "1.9.1"
 
-"vue@^2 || ^3.0.0-0", "vue@^3.0.0", "vue@3.0.5":
+"vue@^2 || ^3.0.0-0", "vue@^3.0.0", "vue@^3.0.2", "vue@3.0.5":
   "version" "3.0.5"
   dependencies:
     "@vue/compiler-dom" "3.0.5"
     "@vue/runtime-dom" "3.0.5"
     "@vue/shared" "3.0.5"
+
+"vuex@^4.0.0-rc.2":
+  "integrity" "sha512-HCPzYGea1xL7fMpDoMiHKujC1Bi/HM9LS5ML0Kv55zQtZJvOl0Lq7eWvJoen+SI4Lf7p9V5AqcVsoLPXNBywjg=="
+  "resolved" "https://registry.npmjs.org/vuex/-/vuex-4.0.0-rc.2.tgz"
+  "version" "4.0.0-rc.2"
 
 "watchpack-chokidar2@^2.0.1":
   "version" "2.0.1"
