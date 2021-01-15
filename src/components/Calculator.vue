@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-primary-button h-full w-hscreen/2">
+  <div>
     <Screen :input="calcInput" :calculation="calcResult" />
     <Buttons
       :onButtonClick="handleButtonClick"
@@ -28,6 +28,8 @@ export default {
     const store = useStore();
     const calcInput = ref("");
     const calcResult = ref("");
+
+    //TODO: setupKeyboard
 
     function handleButtonClick(button) {
       calcInput.value += button;
