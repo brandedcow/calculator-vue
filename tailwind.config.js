@@ -6,6 +6,9 @@ module.exports = {
       width: {
         "hscreen/2": '50vh'
       },
+      height: {
+        "full+1.5rem": 'calc(100% + 1.5rem)'
+      },
       colors :{
         primary: 'var(--color-primary)',
         secondary: 'var(--color-secondary)',
@@ -15,7 +18,7 @@ module.exports = {
       },
       transitionProperty: {
         'fontSize': 'font-size'
-      }
+      },
     },
   },
   variants: {

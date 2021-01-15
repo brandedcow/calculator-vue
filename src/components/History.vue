@@ -1,5 +1,12 @@
 <template>
-  <div class="absolute">{{ history }}</div>
+  <div class="flex flex-col">
+    <div class="h-screen w-full"></div>
+    <div
+      class="bg-primary-button flex-grow flex items-center justify-center cursor-move"
+    >
+      <div class="bg-primary-text w-10 h-2 rounded"></div>
+    </div>
+  </div>
 </template>
 
 <script>
