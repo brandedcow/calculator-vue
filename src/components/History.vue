@@ -3,8 +3,13 @@
     <div
       class="bg-primary h-screen w-full flex flex-col justify-end divide-y overflow-y-scroll"
     >
-      <div v-for="item in history" :key="item.date">
-        <Screen :input="item.input" :calculation="item.result" />
+      <div v-for="(list, key) in history" :key="key">
+        <div class="text-secondary pt-3 pl-6">
+          {{ key }}
+        </div>
+        <div v-for="item in list" :key="item.date">
+          <HistoryItem :input="item.input" :calculation="item.result" />
+        </div>
       </div>
     </div>
     <div
@@ -16,19 +21,26 @@
 </template>
 
 <script>
-import Screen from "./Screen.vue";
+import HistoryItem from "./HistoryItem.vue";
+import { format } from "date-fns";
 
 export default {
-  data() {
-    return {};
-  },
   components: {
-    Screen,
+    HistoryItem,
   },
   computed: {
     history() {
-      console.log(this.$store.state.history);
-      return this.$store.state.history;
+      const orderedByDate = this.$store.state.history.reduce((acc, curr) => {
+        const currDate = format(curr.date, "MMMM d, y");
+        if (!acc[currDate]) {
+          acc[currDate] = [curr];
+        } else {
+          acc[currDate].push(curr);
+        }
+        return acc;
+      }, {});
+
+      return orderedByDate;
     },
   },
 };

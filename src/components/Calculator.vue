@@ -67,7 +67,6 @@ export default {
         try {
           calcResult.value = doCalculation(calcInput.value);
         } catch (e) {
-          console.log(e);
           return;
         }
       }

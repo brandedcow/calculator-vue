@@ -1,21 +1,17 @@
 export default  function handleDragDown(el, binding) {
   const [start, end] = binding.value
-  console.log(el)
 
   function preventDefault(e) {
     e.preventDefault();
   }
 
   function preventDefaultDragOver() {
-    console.log('start')
     document.addEventListener("dragover", preventDefault);
-    document.addEventListener('mousedown', preventDefault)
   }
 
   function handleDrag(e) {
     const { pageY: y } = e;
     const windowHeight = e.view.innerHeight;
-    console.log('dragging')
 
     if (y < windowHeight) {
       el.style.top = `calc(-100vh + ${y}px)`;
@@ -23,7 +19,6 @@ export default  function handleDragDown(el, binding) {
   }
 
   function endDrag(e) {
-    console.log('end')
     
     const { pageY: y } = e;
     const windowHeight = e.view.innerHeight;
@@ -42,5 +37,6 @@ export default  function handleDragDown(el, binding) {
 
   el.addEventListener("dragstart", preventDefaultDragOver);
   el.addEventListener("drag", handleDrag);
+  el.addEventListener('click', preventDefaultDragOver)
   el.addEventListener("dragend", endDrag);
 }
