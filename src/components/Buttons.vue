@@ -73,6 +73,6 @@ export default {
 }
 
 .functionButton {
-  @apply text-primary-text text-4xl w-full h-1/5 flex justify-center items-center;
+  @apply text-secondary text-4xl w-full h-1/5 flex justify-center items-center;
 }
 </style>
