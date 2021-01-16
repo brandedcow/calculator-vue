@@ -1,11 +1,16 @@
 <template>
   <div>
-    <Screen :input="calcInput" :calculation="calcResult" />
+    <Screen
+      :input="calcInput"
+      :calculation="calcResult"
+      class="bg-primary h-1/3"
+    />
     <Buttons
       :onButtonClick="handleButtonClick"
       :onEqualClick="handleEqualClick"
       :onDeleteClick="handleDeleteClick"
       :onDeleteLongClick="handleDeleteLongClick"
+      class="h-2/3"
     />
   </div>
 </template>
@@ -48,15 +53,13 @@ export default {
     }
 
     function handleEqualClick() {
-      calcInput.value = calcResult.value;
-      calcResult.value = "";
-
-      console.log("context", store);
       store.commit("addItem", {
         input: calcInput.value,
         result: calcResult.value,
         date: new Date(),
       });
+      calcInput.value = calcResult.value;
+      calcResult.value = "";
     }
 
     watch(calcInput, () => {

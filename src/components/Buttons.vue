@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-grow h-2/3 relative">
+  <div class="flex flex-grow relative">
     <div class="buttonContainer">
       <div class="w-3/4 h-full flex flex-wrap">
         <button

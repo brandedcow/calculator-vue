@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-primary h-1/3 flex flex-col p-10">
+  <div class="flex flex-col p-10">
     <div
       id="calc-screen"
       class="text-8xl text-primary-text flex-grow flex justify-end items-center overflow-hidden transition-fontSize"

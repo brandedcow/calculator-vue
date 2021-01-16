@@ -19,6 +19,9 @@ module.exports = {
       transitionProperty: {
         'fontSize': 'font-size'
       },
+      inset: {
+        '-full-6': 'calc(-100vh + 2rem)'
+      }
     },
   },
   variants: {
