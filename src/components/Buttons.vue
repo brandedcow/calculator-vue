@@ -2,15 +2,15 @@
   <div class="flex flex-grow relative">
     <div class="buttonContainer">
       <div class="w-3/4 h-full flex flex-wrap">
-        <button
+        <Button
           v-for="button in buttons"
           :key="button"
           class="numericButton"
           @click="onButtonClick(button)"
         >
           {{ button }}
-        </button>
-        <button class="numericButton" @click="onEqualClick">=</button>
+        </Button>
+        <Button class="numericButton" @click="onEqualClick">=</Button>
       </div>
       <div class="w-1/4 h-full flex flex-wrap">
         <button
@@ -36,11 +36,13 @@
 
 <script>
 import AdvancedButtons from "./AdvancedButtons.vue";
+import Button from "./Button.vue";
 import longClick from "../utils/directives/longClick";
 
 export default {
   components: {
     AdvancedButtons,
+    Button,
   },
   props: {
     onButtonClick: Function,
@@ -70,6 +72,10 @@ export default {
 
 .numericButton {
   @apply text-primary-text text-4xl w-1/3 h-1/4 flex justify-center items-center;
+}
+
+.numericButton:active::after {
+  background-color: gray;
 }
 
 .functionButton {
