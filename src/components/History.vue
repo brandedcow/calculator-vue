@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
     <div
-      class="bg-primary h-screen w-full flex flex-col justify-end divide-y overflow-y-scroll"
+      class="bg-primary w-full h-full justify-end divide-y overflow-y-scroll"
     >
       <div v-for="(list, key) in history" :key="key">
         <div class="text-secondary pt-3 pl-6">
