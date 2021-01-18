@@ -18,14 +18,27 @@ export default {
     };
   },
   mounted() {
+    // toggle active class on button
+    this.$el.addEventListener("mousedown", addActive);
+    this.$el.addEventListener("mouseup", removeActive);
+    this.$el.addEventListener("mouseleave", removeActive);
+
     // create ripple on mouse down, auto remove
     this.$el.addEventListener("mousedown", createRipple);
 
-    // TODO Hold ripple when longpress + mouseup
+    // Hold ripple when longpress + mouseup, use active class to track
     // Remove if mouse moves out of ele
+    this.$el.addEventListener("mouseup", removeRipple);
+    this.$el.addEventListener("mouseleave", removeRipple);
+
+    function addActive(e) {
+      e.currentTarget.classList.add("active");
+    }
+    function removeActive(e) {
+      e.currentTarget.classList.remove("active");
+    }
 
     function createRipple(e) {
-      console.log(e);
       if (e.button === 0) {
         const button = e.currentTarget;
         const diameter = button.clientHeight;
@@ -37,13 +50,34 @@ export default {
         ripple.style.top = `${e.offsetY - radius}px`;
 
         ripple.classList.add("ripple");
+        ripple.classList.add("animationActive");
 
         button.insertBefore(ripple, button.firstChild);
 
+        // remove ripple slightly after animation fininshes normally,
         setTimeout(() => {
-          button.removeChild(button.firstChild);
-        }, 400);
+          // remove animationActive
+          ripple.classList.remove("animationActive");
+
+          // dont remove if button is still active
+          if (button.classList.contains("active")) return;
+
+          if (button.firstChild.classList.contains("ripple")) {
+            button.removeChild(button.firstChild);
+          }
+        }, 450);
       }
+    }
+
+    function removeRipple(e) {
+      const button = e.currentTarget;
+      if (
+        button.firstChild.classList.contains("ripple") &&
+        !button.firstChild.classList.contains("animationActive")
+      ) {
+        button.removeChild(button.firstChild);
+      }
+      e;
     }
   },
 };
@@ -65,7 +99,6 @@ export default {
 @keyframes ripple {
   to {
     transform: scale(3);
-    opacity: 0;
   }
 }
 </style>

@@ -10,34 +10,38 @@
       @click="isClosed = !isClosed"
     ></div>
     <div v-show="!isClosed" class="flex flex-wrap flex-grow h-full">
-      <button @click="isInv = !isInv" class="button">INV</button>
-      <button @click="isRad = !isRad" class="button">RAD</button>
-      <button @click="onButtonClick('%')" class="button">%</button>
+      <Button @click="isInv = !isInv" class="button">INV</Button>
+      <Button @click="isRad = !isRad" class="button">RAD</Button>
+      <Button @click="onButtonClick('%')" class="button">%</Button>
 
-      <button
+      <Button
         v-for="ibutton in invButtons"
         :key="ibutton[0]"
         @click="onButtonClick(transformInv(ibutton[Number(isInv)]))"
         class="button"
       >
         {{ ibutton[Number(isInv)] }}
-      </button>
+      </Button>
 
-      <button
+      <Button
         v-for="button in buttons"
         :key="button"
         @click="onButtonClick(button)"
         class="button"
       >
         {{ button }}
-      </button>
+      </Button>
     </div>
   </div>
 </template>
 
 <script>
 import { ref, computed } from "vue";
+import Button from "./Button";
 export default {
+  components: {
+    Button,
+  },
   props: {
     onButtonClick: Function,
   },
