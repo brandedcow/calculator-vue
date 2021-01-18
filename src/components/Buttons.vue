@@ -13,20 +13,21 @@
         <Button class="numericButton" @click="onEqualClick">=</Button>
       </div>
       <div class="w-1/4 h-full flex flex-wrap">
-        <button
+        <Button
           class="functionButton"
-          @click="onDeleteClick"
-          v-text="'<='"
           v-long-click="onDeleteLongClick"
-        ></button>
-        <button
+          @click="onDeleteClick()"
+        >
+          BSP
+        </Button>
+        <Button
           v-for="fbutton in functionButtons"
           :key="fbutton"
           class="functionButton"
           @click="onButtonClick(fbutton)"
         >
           {{ fbutton }}
-        </button>
+        </Button>
       </div>
     </div>
 

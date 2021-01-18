@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <button ref="button" @click="onClick" class="relative h-full w-full">
-      <div ref="ripple" class="ripple"></div>
-      <slot></slot>
+  <div class="relative overflow-hidden">
+    <button ref="button" @click="onClick()" class="relative h-full w-full">
+      <slot class="z-10"></slot>
     </button>
   </div>
 </template>
@@ -13,44 +12,59 @@ export default {
     onClick: Function,
     label: String,
   },
+  data() {
+    return {
+      timers: [],
+    };
+  },
   mounted() {
-    const ripple = this.$refs.ripple;
-    const button = this.$refs.button;
+    // create ripple on mouse down, auto remove
+    this.$el.addEventListener("mousedown", createRipple);
 
-    const diameter = Math.max(button.clientWidth, button.clientHeight);
-    const radius = diameter / 2;
+    // TODO Hold ripple when longpress + mouseup
+    // Remove if mouse moves out of ele
 
-    ripple.style.width = ripple.style.height = `${diameter}px`;
-    ripple.style.left = `${button.clientWidth / 2}px`;
-    ripple.style.top = `${button.clientHeight / 2}px`;
+    function createRipple(e) {
+      console.log(e);
+      if (e.button === 0) {
+        const button = e.currentTarget;
+        const diameter = button.clientHeight;
+        const radius = diameter / 2;
+        const ripple = document.createElement("div");
+        ripple.style.height = `${diameter}px`;
+        ripple.style.width = `${diameter}px`;
+        ripple.style.left = `${e.offsetX - radius}px`;
+        ripple.style.top = `${e.offsetY - radius}px`;
 
-    this.$refs.button.addEventListener("click", function createRipple(e) {
-      ripple.style.left = `${e.offsetX - radius}px`;
-      ripple.style.top = `${e.offsetY - radius}px`;
-      ripple.classList.add("animate_ripple");
-      setTimeout(() => {
-        ripple.classList.remove("animate_ripple");
-      }, 600);
-    });
+        ripple.classList.add("ripple");
+
+        button.insertBefore(ripple, button.firstChild);
+
+        setTimeout(() => {
+          button.removeChild(button.firstChild);
+        }, 400);
+      }
+    }
   },
 };
 </script>
 
-<style scoped>
+<style>
 .ripple {
   position: absolute;
   border-radius: 50%;
   transform: scale(0);
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(125, 125, 125, 0.2);
+  animation: ripple 400ms linear 0s forwards;
 }
 
-.animate_ripple {
-  animation: ripple 600ms linear 0s forwards;
+.rippleMask {
+  position: absolute;
 }
 
 @keyframes ripple {
   to {
-    transform: scale(4);
+    transform: scale(3);
     opacity: 0;
   }
 }
